@@ -1,0 +1,21 @@
+server:
+  port: 9002
+
+eureka:
+  instance:
+    hostname: localhost
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: Generate-service
+          uri: lb://Generate-service
+          predicates:
+            - Path=/generate/**
+        - id: oaes-service
+          uri: lb://oaes-service
+          predicates:
+            - Path=/exam/**
